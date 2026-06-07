@@ -15,13 +15,15 @@ Out of the box the agent handles everyday tasks — community commerce, personal
 | **General chat** | "What's the capital of France?" | Answers from Gemini's knowledge directly |
 | **Web search** | "What's the current dollar rate in Nigeria?" | Calls web search, returns cited sources |
 | **Bookkeeping** | "Just made ₦180k from a curtain job. Materials ₦35k." | Logs income + expense, links any receipt image |
+| **Inventory** | "I have 100 bags of rice at ₦15k cost, ₦18k sell price" | Tracks stock; adjusts count and ledger automatically on sale or purchase |
 | **Marketplace** | "I'm a plumber in Surulere" / "Find a doctor in Ikeja" | Posts offer or searches; notifies both sides when matched |
-| **Reports** | "Send my weekly report" | Financial summary with honest scope disclaimer |
+| **Reports** | "Send my weekly report" | Financial summary or inventory snapshot with honest scope disclaimer |
 | **Reminders** | "Remind me to invoice the client at 9am tomorrow" | Delivers reminder via the same chat |
 | **Scheduling** | "Every Monday morning, summarise tech news for me" | Creates a recurring background task |
 | **Skills** | "Save a skill: when I ask about budgeting, use the 50/30/20 rule" | Saves a skill; agent applies it in future conversations |
 | **Import skills** | "Import a skill from https://example.com/my-skill.md" | Fetches, validates, and saves the skill file |
 | **Agent config** | "Call yourself Jade" / "Be more formal" | Renames the agent and adjusts its tone |
+| **Account linking** | "Link my accounts" (then enter code on the other platform) | Merges Telegram + WhatsApp identities into one unified profile |
 
 ---
 
@@ -40,9 +42,10 @@ Telegram (Bot API)         ─┘         │                     │
 - **Agent layer:** [Google Agent Development Kit](https://google.github.io/adk-docs/) — TypeScript (`@google/adk`)
 - **LLM:** Gemini (model configurable via env)
 - **Backend:** NestJS (TypeScript, modular DI)
-- **Database:** MongoDB via Mongoose
+- **Database:** MongoDB via Mongoose — session history, profiles, records, skill metadata, marketplace listings
 - **File & skill storage:** Google Cloud Storage (GCS); local filesystem fallback in development
 - **Queue / scheduling:** BullMQ + Redis
+- **Safety:** Pluggable `SafetyGuardService` with four guards — abuse filter, financial privacy, rate limiter, and service safety advisor
 
 ### Per-User Agent Model
 
@@ -79,6 +82,9 @@ Skill content is sandboxed — it cannot override system-level instructions, acc
 ebere/
 ├── backend/          # NestJS API — webhooks, agent, domain logic
 ├── landing-page/     # Static landing page
+├── admin-dashboard/  # Web dashboard for platform monitoring and moderation
+├── DEVPOST.md        # Hackathon submission write-up
+├── PITCH.md          # Product pitch document
 └── README.md         # This file
 ```
 
