@@ -1,6 +1,5 @@
 # Ebere
 
-> **Ebere handles it.** — Your own AI agent. No app to download, no account to create.
 
 Ebere is a personal AI agent platform accessible through WhatsApp and Telegram. Every user gets their own agent — with persistent memory, a customisable name and personality, and the ability to extend its capabilities by adding **skills**: plain-English descriptions of new behaviours the agent should follow.
 
