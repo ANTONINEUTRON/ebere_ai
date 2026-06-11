@@ -1,362 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ebere acts as a conversational AI agent for hyper-local commerce - automated bookkeeping, gig matching, and housing discovery in one chat window.">
-  <title>Ebere — Your conversational coordinator</title>
-  <!-- Google Fonts -->
+  <meta name="description"
+    content="Ebere is your personal AI agent on WhatsApp and Telegram. Track finances, find local services, manage inventory, and more — just by chatting. No app to download.">
+  <meta name="keywords"
+    content="AI agent, WhatsApp bot, Telegram bot, local commerce, bookkeeping, community marketplace, personal assistant">
+  <title>Ebere — Your Personal AI Agent on WhatsApp & Telegram</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="public/ebere_icon.png">
+
+  <!-- Google Fonts: Varela Round + Nunito Sans + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:wght@300;400;500;600;700;800&family=Varela+Round&display=swap"
+    rel="stylesheet">
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+
   <!-- Core Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-  <!-- Floating Physics Canvas Background -->
-  <canvas id="gravityCanvas"></canvas>
+<body>
 
   <!-- Main Container -->
   <div class="app-wrapper">
 
-    <!-- Top Navigation Bar -->
+    <!-- ─── Navigation ─────────────────────────────────────────────────── -->
     <header class="navbar">
       <div class="nav-container">
         <div class="logo-group">
+          <img src="public/ebere_icon.png" alt="Ebere Logo" class="logo-img">
           <span class="logo-text">Ebere</span>
-          <span class="logo-badge">AGENT.v1.0</span>
+          <span class="logo-badge">AI Agent</span>
         </div>
         <nav class="nav-links">
-          <a href="#features">Capabilities</a>
-          <a href="#playground">Playground</a>
-          <a href="#setup">Connection</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#features">Features</a>
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
         </nav>
         <div class="nav-actions">
-          <a href="#playground" class="btn btn-outline">Try Simulator</a>
-          <a href="https://t.me/EbereBot" target="_blank" class="btn btn-solid">Launch Agent</a>
+          <a href="#get-started" class="btn btn-solid">Message Ebere</a>
         </div>
-        <button class="mobile-nav-toggle" aria-label="Toggle Navigation">
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">
           <i data-lucide="menu"></i>
         </button>
       </div>
     </header>
 
-    <!-- Mobile Drawer Menu -->
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="mobile-drawer" id="mobileDrawer">
       <div class="drawer-header">
-        <span class="logo-text">Ebere</span>
+        <div class="logo-group">
+          <img src="public/ebere_icon.png" alt="Ebere Logo" class="logo-img">
+          <span class="logo-text">Ebere</span>
+        </div>
         <button class="drawer-close" id="drawerClose"><i data-lucide="x"></i></button>
       </div>
       <div class="drawer-links">
-        <a href="#features">Capabilities</a>
-        <a href="#playground">Playground</a>
-        <a href="#setup">Connection</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#get-started">Get Started</a>
         <div class="drawer-actions">
-          <a href="#playground" class="btn btn-outline w-100">Try Simulator</a>
-          <a href="https://t.me/EbereBot" target="_blank" class="btn btn-solid w-100">Launch Agent</a>
+          <a href="https://t.me/ebereaibot" target="_blank" class="btn btn-solid w-100">Message Ebere</a>
         </div>
       </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- ─── Hero Section ───────────────────────────────────────────────── -->
     <section class="hero-section">
-      <div class="grid-cell hero-left">
-        <div class="tag-status">
-          <span class="status-dot"></span>
-          <span class="status-text">Fully Conversational AI</span>
-        </div>
-        <h1 class="hero-headline">Ebere handles it.</h1>
+      <div class="hero-left">
+        <h1 class="hero-headline">
+          <span class="highlight">Ebere</span> handles it.
+        </h1>
         <p class="hero-subtext">
-          Your records, your gigs, your housing. No apps to download, no accounts to create, no forms to fill. Just message or speak to Ebere on WhatsApp or Telegram, and let her organize the rest.
+          Your finances, your gigs, your marketplace — organized through a simple chat. No apps to download, no accounts
+          to create. Just message Ebere on WhatsApp or Telegram.
         </p>
         <div class="hero-ctas">
-          <a href="#playground" class="btn btn-solid btn-large">
-            <span>Explore Playground</span>
-            <i data-lucide="arrow-right"></i>
+          <a href="https://t.me/ebereaibot" target="_blank" class="btn btn-solid btn-large">
+            <i data-lucide="message-circle"></i>
+            <span>Start Chatting</span>
           </a>
-          <a href="#setup" class="btn btn-outline btn-large">
-            <i data-lucide="message-square"></i>
-            <span>Get Connected</span>
+          <a href="https://www.youtube.com/watch?v=ldJ9M791lW0" class="btn btn-outline btn-large">
+            <i data-lucide="play-circle"></i>
+            <span>See It In Action</span>
           </a>
         </div>
         <div class="hero-stats">
           <div class="stat-box">
-            <div class="stat-number">01</div>
-            <div class="stat-label">Unified Chat Interface</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Structured JSON Logging</div>
+            <div class="stat-number">2</div>
+            <div class="stat-label">Channels Supported</div>
           </div>
           <div class="stat-box">
             <div class="stat-number">&lt; 2s</div>
             <div class="stat-label">Response Time</div>
           </div>
+          <div class="stat-box">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Always Available</div>
+          </div>
         </div>
       </div>
 
-      <div class="grid-cell hero-right">
-        <!-- Live System Metrics / Status Box -->
-        <div class="workspace-window dashboard-preview">
-          <div class="window-header">
-            <div class="window-title-group">
-              <i data-lucide="activity" class="text-secondary"></i>
-              <span class="window-title">ebere_system_monitor</span>
+      <div class="hero-right">
+        <div class="hero-chat-preview">
+          <!-- Live Chat Preview Card -->
+          <div class="chat-preview-card">
+            <div class="chat-preview-header">
+              <div class="chat-preview-user">
+                <div class="chat-avatar">
+                  <img src="public/ebere_icon.png" alt="Ebere Avatar" class="avatar-img">
+                  <span class="online-dot"></span>
+                </div>
+                <div class="chat-avatar-info">
+                  <span class="chat-avatar-name">Ebere</span>
+                  <span class="chat-avatar-status">Online</span>
+                </div>
+              </div>
             </div>
-            <span class="status-pill pulse">online</span>
+            <div class="chat-preview-body" id="heroChat">
+              <!-- Animated chat messages injected by JS -->
+            </div>
+            <div class="chat-preview-input">
+              <span>Message Ebere...</span>
+              <div class="send-icon">
+                <i data-lucide="send"></i>
+              </div>
+            </div>
           </div>
-          <div class="window-body terminal-body">
-            <div class="terminal-line"><span class="term-prompt">ebere-node:~$</span> node dist/main.js</div>
-            <div class="terminal-line term-success">[Nest] 8140  - 05/22/2026, 3:30:00 PM     LOG [NestFactory] Starting Nest application...</div>
-            <div class="terminal-line term-success">[Nest] 8140  - 05/22/2026, 3:30:01 PM     LOG [MongooseModule] Connected to MongoDB database</div>
-            <div class="terminal-line term-success">[Nest] 8140  - 05/22/2026, 3:30:01 PM     LOG [BullModule] Queue "notifications" initialized successfully</div>
-            <div class="terminal-line"><span class="term-prompt">ebere-node:~$</span> ebere-agent --status</div>
-            <div class="terminal-line text-muted">Active Sessions: 1,429</div>
-            <div class="terminal-line text-muted">Daily Logged Memories: 3,842</div>
-            <div class="terminal-line text-muted">Pending Reminders: 204</div>
-            <div class="terminal-line term-success">Google ADK agent ready. Listening on webhooks...</div>
+          <!-- Channel Badges -->
+          <div class="channel-badges">
+            <a href="https://t.me/ebereaibot" target="_blank" class="channel-badge tg">
+              <i data-lucide="send"></i>
+              Telegram
+            </a>
+            <span class="channel-badge wa disabled" title="Coming Soon">
+              <i data-lucide="phone"></i>
+              WhatsApp (Soon)
+            </span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Capabilities / Features Grid Section -->
-    <section class="section-divider" id="features">
+    <!-- ─── How It Works ───────────────────────────────────────────────── -->
+    <section class="how-it-works-bg" id="how-it-works">
+      <div class="section-block">
+        <div class="section-header centered">
+          <div class="section-label">Simple as chatting</div>
+          <h2 class="section-title">How Ebere Works</h2>
+          <p class="section-subtitle">No sign-up forms, no app downloads, no learning curve.
+          </p>
+        </div>
+
+        <div class="steps-grid reveal-stagger">
+          <div class="step-card reveal" style="--i:0">
+            <div class="step-icon">
+              <i data-lucide="message-circle"></i>
+            </div>
+            <h3 class="step-title">Send a Message</h3>
+            <p class="step-desc">Open WhatsApp or Telegram and message Ebere — just like texting a friend. No setup
+              needed.</p>
+          </div>
+          <div class="step-card reveal" style="--i:1">
+            <div class="step-icon">
+              <i data-lucide="cpu"></i>
+            </div>
+            <h3 class="step-title">Ebere Understands</h3>
+            <p class="step-desc">Ebere figures out what you need — finances, gigs, reminders,
+              or inventory — and takes action.</p>
+          </div>
+          <div class="step-card reveal" style="--i:2">
+            <div class="step-icon">
+              <i data-lucide="check-circle"></i>
+            </div>
+            <h3 class="step-title">Done. That Simple.</h3>
+            <p class="step-desc">Your data is logged, matches are found, reminders are set. Ebere remembers everything
+              across sessions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Features Grid ──────────────────────────────────────────────── -->
+    <section class="section-block" id="features">
       <div class="section-header">
-        <h2 class="section-title">System Capabilities</h2>
-        <p class="section-subtitle">What you say, and how Ebere organizes it on the backend.</p>
+        <div class="section-label">Capabilities</div>
+        <h2 class="section-title">Everything You Need, In One Chat</h2>
+        <p class="section-subtitle">From tracking your money to finding local services — tell Ebere what you need in
+          plain language.</p>
       </div>
 
-      <div class="features-grid">
-        <div class="feature-card">
+      <div class="features-grid reveal-stagger">
+        <div class="feature-card reveal" style="--i:0">
           <div class="card-icon-container">
-            <i data-lucide="book-open"></i>
+            <i data-lucide="wallet"></i>
           </div>
           <h3 class="card-title">Bookkeeping</h3>
           <p class="card-desc">
-            Speak or type plain income and expenses. Ebere extracts numbers, currencies, categories, and logs them in a structured ledger.
+            Say your income and expenses naturally. Ebere extracts amounts, categories, and logs them in a structured
+            ledger automatically.
           </p>
           <div class="card-code">
-            <div class="code-header">User says</div>
+            <div class="code-header">You say</div>
             <div class="code-content">"Just made ₦180k from a curtain job. Materials were ₦35k."</div>
           </div>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card reveal" style="--i:1">
           <div class="card-icon-container">
             <i data-lucide="users"></i>
           </div>
-          <h3 class="card-title">Needs & Offers</h3>
+          <h3 class="card-title">Community Marketplace</h3>
           <p class="card-desc">
-            Post opportunities or standing requests. Ebere parses requirements and maps them to available local providers in real-time.
+            Post services or find help nearby. Ebere proactively matches needs with offers and connects both parties
+            directly.
           </p>
           <div class="card-code">
-            <div class="code-header">User says</div>
-            <div class="code-content">"Find me a plumber in Ikeja" / "I'm a plumber available weekdays"</div>
+            <div class="code-header">You say</div>
+            <div class="code-content">"Find me a plumber in Ikeja" / "I'm a plumber in Surulere"</div>
           </div>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card reveal" style="--i:2">
           <div class="card-icon-container">
-            <i data-lucide="home"></i>
+            <i data-lucide="package"></i>
           </div>
-          <h3 class="card-title">Housing Discovery</h3>
+          <h3 class="card-title">Inventory Tracking</h3>
           <p class="card-desc">
-            List properties or set housing search preferences. Ebere handles media matching, linking image uploads to listings.
+            Track stock levels, cost prices, and selling prices. Ebere adjusts counts automatically when you buy or
+            sell.
           </p>
           <div class="card-code">
-            <div class="code-header">User says</div>
-            <div class="code-content">*sends photo* + "2-bedroom apartment available, Lekki"</div>
+            <div class="code-header">You say</div>
+            <div class="code-content">"I have 100 bags of rice at ₦15k cost, ₦18k sell price"</div>
           </div>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card reveal" style="--i:3">
           <div class="card-icon-container">
             <i data-lucide="bell"></i>
           </div>
           <h3 class="card-title">Reminders & Schedules</h3>
           <p class="card-desc">
-            Set timers or schedule recurring lookups. Ebere executes tasks in the background and delivers reports back when due.
+            Set one-off reminders or recurring tasks. Ebere delivers them to your chat on time, every time.
           </p>
           <div class="card-code">
-            <div class="code-header">User says</div>
+            <div class="code-header">You say</div>
             <div class="code-content">"Remind me to invoice the client tomorrow at 9am"</div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Playground Workspace Section -->
-    <section class="section-divider" id="playground">
-      <div class="section-header">
-        <h2 class="section-title">Interactive Simulator</h2>
-        <p class="section-subtitle">Click a preset query to simulate the conversation flow and watch the system database update live.</p>
-      </div>
-
-      <div class="presets-row">
-        <button class="preset-btn active" data-preset="bookkeeping">
-          <i data-lucide="book-open"></i> Bookkeeping
-        </button>
-        <button class="preset-btn" data-preset="gigs">
-          <i data-lucide="users"></i> Gig Matching
-        </button>
-        <button class="preset-btn" data-preset="housing">
-          <i data-lucide="home"></i> Housing Listing
-        </button>
-        <button class="preset-btn" data-preset="reminders">
-          <i data-lucide="bell"></i> Reminders
-        </button>
-      </div>
-
-      <div class="workspace-layout">
-        <!-- Chat Interface Window -->
-        <div class="workspace-window chat-window">
-          <div class="window-header">
-            <div class="window-title-group">
-              <i data-lucide="message-square" class="text-primary"></i>
-              <span class="window-title">ebere_chat_session</span>
-            </div>
-            <div class="avatar-group">
-              <div class="avatar">E</div>
-              <span class="avatar-status"></span>
-            </div>
+        <div class="feature-card reveal" style="--i:4">
+          <div class="card-icon-container">
+            <i data-lucide="globe"></i>
           </div>
-          
-          <div class="chat-body" id="chatBody">
-            <!-- Messages populated by JS -->
-          </div>
-
-          <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Type a message or select a preset above..." readonly>
-            <button class="chat-send-btn" id="chatSendBtn"><i data-lucide="send"></i></button>
+          <h3 class="card-title">Web Search</h3>
+          <p class="card-desc">
+            Ask any question and get real-time answers from the web, complete with cited sources — right in your chat.
+          </p>
+          <div class="card-code">
+            <div class="code-header">You say</div>
+            <div class="code-content">"What's the current dollar rate in Nigeria?"</div>
           </div>
         </div>
 
-        <!-- Database Visualizer Window -->
-        <div class="workspace-window database-window">
-          <div class="window-header">
-            <div class="window-title-group">
-              <i data-lucide="database" class="text-success"></i>
-              <span class="window-title">mongodb_memory_collection</span>
-            </div>
-            <span class="window-meta">records: <span id="dbRecordCount">0</span></span>
+        <div class="feature-card reveal" style="--i:5">
+          <div class="card-icon-container">
+            <i data-lucide="sparkles"></i>
           </div>
-          <div class="database-tabs">
-            <button class="tab-btn active" data-tab="collection">Document View</button>
-            <button class="tab-btn" data-tab="aggregates">Ledger State</button>
-          </div>
-          <div class="window-body database-body">
-            <!-- Document View Tab Content -->
-            <div class="tab-content active" id="tabCollection">
-              <pre><code class="language-json" id="jsonDisplay">// Database is empty. Select a preset query above.</code></pre>
-            </div>
-            <!-- Ledger State Tab Content -->
-            <div class="tab-content" id="tabAggregates">
-              <div class="ledger-visualizer">
-                <div class="ledger-stats">
-                  <div class="ledger-stat">
-                    <span class="lbl">Total Income</span>
-                    <span class="val text-success" id="ledgerIncome">₦0.00</span>
-                  </div>
-                  <div class="ledger-stat">
-                    <span class="lbl">Total Expenses</span>
-                    <span class="val text-error" id="ledgerExpenses">₦0.00</span>
-                  </div>
-                  <div class="ledger-stat">
-                    <span class="lbl">Net Balance</span>
-                    <span class="val" id="ledgerNet">₦0.00</span>
-                  </div>
-                </div>
-                <div class="ledger-table-wrapper">
-                  <table class="ledger-table">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Type</th>
-                        <th>Category</th>
-                        <th>Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody id="ledgerRows">
-                      <tr>
-                        <td colspan="4" class="text-center text-muted">No transactions logged in this session</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+          <h3 class="card-title">Teach New Skills</h3>
+          <p class="card-desc">
+            Extend Ebere's abilities by saving custom skills in plain English. Every user's Ebere agent becomes uniquely
+            theirs.
+          </p>
+          <div class="card-code">
+            <div class="code-header">You say</div>
+            <div class="code-content">"Save a skill: when I ask about prices, compare at least 3 sources"</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Connection Guide Section -->
-    <section class="section-divider" id="setup">
-      <div class="section-header">
-        <h2 class="section-title">Get Connected</h2>
-        <p class="section-subtitle">No signup required. Add Ebere on your preferred app and start chatting immediately.</p>
+    <!-- ─── Get Started / Connection ───────────────────────────────────── -->
+    <section class="section-block" id="get-started">
+      <div class="section-header centered">
+        <div class="section-label">Get Started</div>
+        <h2 class="section-title">Message Ebere Now</h2>
+        <p class="section-subtitle">No signup required. Add Ebere on your preferred messaging app and start chatting
+          immediately.</p>
       </div>
 
       <div class="connection-layout">
-        <!-- Telegram Connection Box -->
-        <div class="connect-card">
+        <!-- Telegram Card -->
+        <div class="connect-card card-tg reveal" style="--i:0">
           <div class="connect-header">
             <i data-lucide="send" class="icon-tg"></i>
-            <h3>Telegram Bot</h3>
+            <h3>Telegram</h3>
           </div>
           <p class="connect-body">
-            Start a chat with our verified Bot. Ebere will welcome you, set up your local profile, and immediately start helping you track transactions or find matches.
+            Start a conversation with our Telegram bot. Ebere will greet you, set up your profile, and start helping you
+            immediately — finances, gigs, reminders, and more.
           </p>
           <div class="connect-actions">
-            <a href="https://t.me/EbereBot" target="_blank" class="btn btn-solid w-100">
-              <i data-lucide="external-link"></i> Open Telegram Bot
+            <a href="https://t.me/ebereaibot" target="_blank" class="btn btn-tg w-100">
+              <i data-lucide="external-link"></i> Open @ebereaibot
             </a>
-            <span class="connect-badge">@EbereBot</span>
+            <span class="connect-badge">@ebereaibot</span>
           </div>
         </div>
 
-        <!-- WhatsApp Connection Box -->
-        <div class="connect-card">
+        <!-- WhatsApp Card -->
+        <div class="connect-card card-wa reveal" style="--i:1">
           <div class="connect-header">
-            <i data-lucide="message-square" class="icon-wa"></i>
-            <h3>WhatsApp Agent</h3>
+            <i data-lucide="phone" class="icon-wa"></i>
+            <h3>WhatsApp <span class="badge-soon">Soon</span></h3>
           </div>
           <p class="connect-body">
-            Add our business number on WhatsApp. You can send text, voice notes (Ebere transcribes them), or take photos of invoices and receipts.
+            Chat with Ebere on WhatsApp. Send text, voice notes (Ebere transcribes them), or snap photos of receipts and
+            invoices for automatic logging.
           </p>
           <div class="connect-actions">
-            <a href="https://wa.me/234000000000" target="_blank" class="btn btn-solid w-100">
-              <i data-lucide="external-link"></i> Chat on WhatsApp
-            </a>
-            <span class="connect-badge">+234 (0) 90 282 3721</span>
+            <button class="btn btn-wa w-100" disabled>
+              Coming Soon
+            </button>
+            <span class="connect-badge">Launch scheduled soon</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ─── Footer ─────────────────────────────────────────────────────── -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-left">
           <div class="logo-group">
+            <img src="public/ebere_icon.png" alt="Ebere Logo" class="logo-img">
             <span class="logo-text">Ebere</span>
-            <span class="logo-badge">AGENT.v1.0</span>
+            <span class="logo-badge">AI Agent</span>
           </div>
-          <p class="footer-desc">Your community coordinator. Ebere handles it.</p>
+          <p class="footer-desc">Your personal AI agent. Ebere handles it.</p>
+          
         </div>
         <div class="footer-right">
-          <span class="footer-meta">Powered by NestJS + Google ADK + Gemini API</span>
-          <span class="footer-copyright">© 2026 Ebere System. All rights reserved.</span>
+          <div class="footer-links">
+            <a href="terms.html">Terms and Conditions</a>
+            <span class="divider">•</span>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+          <span class="footer-meta">Powered by Tita Labs</span>
         </div>
       </div>
+        <div class="footer-copyright">&copy; 2026 Ebere. All rights reserved.</div>
     </footer>
 
   </div>
 
   <script src="app.js"></script>
 </body>
+
 </html>
